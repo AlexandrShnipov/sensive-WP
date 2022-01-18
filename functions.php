@@ -124,6 +124,10 @@ function sensive_scripts()
   // mail-script
   wp_enqueue_script('mail-script', get_template_directory_uri() . '/js/mail-script.js', array('jquery'), '1.0.0', true);
 
+  //contact
+  wp_enqueue_script('mail-script', get_template_directory_uri() . '/vendors/contact.js', array('jquery'), '1.0.0', true);
+
+
   // main
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
 }
@@ -200,3 +204,61 @@ class bootstrap_4_walker_nav_menu extends Walker_Nav_menu
     $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
   }
 }
+
+add_action('wp_ajax_my_action', 'my_action_callback');
+add_action('wp_ajax_nopriv_my_action', 'my_action_callback');
+function my_action_callback()
+{
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    # Подставляем почту администратора
+    $mail_to = get_option('admin_email');
+
+    # Собираем данные из формы
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $subject = trim($_POST["subject"]);
+    $message = trim($_POST["message"]);
+
+    if (empty($name) or empty($email) or empty($subject) or empty($message)) {
+      # Отправляем ошибку 400 (bad request).
+      http_response_code(400);
+      echo __("Пожалуйста заполните все обязательные поля.", 'sensive');
+      exit;
+    }
+
+    # Содержимое письма
+    $team = 'Заявка с сайта:' . get_bloginfo('name');
+    $content = "Имя: $name\n";
+    $content .= "Email: $email\n\n";
+    $content .= "Субъект: $subject\n\n";
+    $content .= "Сообщение:\n$message\n";
+
+    # Заголовок письма email headers.
+    $headers = "From: Wordpress <info@alexander-shnipov.ru>";
+
+    # Попытка отправить с помощью  mail().
+    $success = wp_mail($mail_to, $team, $content, $headers);
+    if ($success) {
+      # Set a 200 (okay) response code.
+      http_response_code(200);
+      echo __("Спасибо! Ваше сообщение отправлено.", 'sensive');
+    } else {
+      # Set a 500 (internal server error) response code.
+      http_response_code(500);
+      echo __("Упс! Что-то пошло не так, не получилось отправить сообщение.", 'sensive');
+    }
+  } else {
+    # Not a POST request, set a 403 (forbidden) response code.
+    http_response_code(403);
+    echo __("Не получилось отправить, попробуйте позже.", 'sensive');
+  }
+
+  // выход нужен для того, чтобы в ответе не было ничего лишнего, только то что возвращает функция
+  wp_die();
+}
+
+
+
+

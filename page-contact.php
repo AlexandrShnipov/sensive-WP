@@ -88,7 +88,8 @@
         </div>
       </div>
       <div class="col-md-8 col-lg-9">
-        <form action="#/" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+        <!-- <form action="<?php echo admin_url('admin-ajax.php') ?>" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+          <input type="hidden" name="action" value="my_action">
           <div class="row">
             <div class="col-lg-5">
               <div class="form-group">
@@ -110,7 +111,8 @@
           <div class="form-group text-center text-md-right mt-3">
             <button type="submit" class="button button--active button-contactForm">Send Message</button>
           </div>
-        </form>
+        </form> -->
+        <?php echo do_shortcode( '[contact-form-7 id="40" title="Виджет формы"]' ) ?>
       </div>
     </div>
   </div>
