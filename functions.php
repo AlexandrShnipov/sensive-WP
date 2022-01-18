@@ -76,6 +76,9 @@ if (!function_exists('sensive_setup')) {
   add_action('after_setup_theme', 'sensive_setup');
 }
 
+// ! включаем миниатюры для постов и страниц
+
+add_theme_support( 'post-thumbnails' );
 
 //! подключение стилей и скриптов
 
