@@ -1,4 +1,4 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
 <!--================ Hero sm Banner start =================-->
 <section class="mb-30px">
@@ -8,7 +8,7 @@
         <h1>Blog Page</h1>
         <nav aria-label="breadcrumb" class="banner-breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Blog Page</li>
           </ol>
         </nav>
@@ -24,6 +24,7 @@
     <div class="row">
       <div class="col-lg-8">
 
+        <!-- цикл постов -->
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
             <!-- Вывод постов, функции цикла: the_title() и т.д. -->
             <div class="single-recent-blog-post">
@@ -34,7 +35,7 @@
                   the_post_thumbnail(
                     'post-thumbnail',
                     array(
-                      'class' => "img-fluid"
+                      'class' => "img-fluid w-100"
                     )
                   );
                 } else {
@@ -51,7 +52,7 @@
                 <a href="<?php echo get_the_permalink() ?>">
                   <h3><?php the_title(); ?></h3>
                 </a>
-                <p class="tag-list-inline">Tag: <?php the_tags()?></p>
+                <p class="tag-list-inline">Tag: <?php the_tags() ?></p>
                 <p><?php the_excerpt(); ?></p>
                 <a class="button" href="<?php echo get_the_permalink() ?>">Читать далее <i class="ti-arrow-right"></i></a>
               </div>
@@ -60,7 +61,7 @@
         else : ?>
           Записей нет.
         <?php endif; ?>
-
+        <!-- цикл постов -->
 
 
         <!-- <div class="single-recent-blog-post">
@@ -143,13 +144,27 @@
           </div>
         </div> -->
 
-
-
         <div class="row">
           <div class="col-lg-12">
-            <nav class="blog-pagination justify-content-center d-flex">
+            <nav class="blog-pagination justify-content-center d-flex flex-nowrap ">
               <ul class="pagination">
-                <li class="page-item">
+
+                <?php the_posts_pagination(
+                  array(
+                    'show_all'     => false, // показаны все страницы участвующие в пагинации
+                    'end_size'     => 1,     // количество страниц на концах
+                    'mid_size'     => 1,     // количество страниц вокруг текущей
+                    'prev_next'    => true,  // выводить ли боковые ссылки "предыдущая/следующая страница".
+                    'prev_text'    => __('<span class="page-link page-item ti-angle-left m-2"</span>'),
+                    'next_text'    => __('<span class="page-link page-item ti-angle-right m-2"</span>'),
+                    'before_page_number' => '<span class="page-link">',
+                    'after_page_number' => '</span>',
+                    'add_fragment' => '',     // Текст который добавиться ко всем ссылкам.
+                    'screen_reader_text' => __('Posts navigation'),
+                  )
+                ); ?>
+
+                <!-- <li class="page-item">
                   <a href="#" class="page-link" aria-label="Previous">
                     <span aria-hidden="true">
                       <i class="ti-angle-left"></i>
@@ -164,7 +179,7 @@
                       <i class="ti-angle-right"></i>
                     </span>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </nav>
           </div>
