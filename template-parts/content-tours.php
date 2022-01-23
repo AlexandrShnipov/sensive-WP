@@ -36,7 +36,9 @@
   <blockquote class="blockquote">
     <?php if (has_excerpt()) {
       the_excerpt();
-    } else {} ?>
+    } else {
+      the_content();
+    } ?>
   </blockquote>
   <?php the_content(); ?>
   <div class="news_d_footer flex-column flex-sm-row">

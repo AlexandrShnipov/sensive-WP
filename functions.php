@@ -80,6 +80,7 @@ if (!function_exists('sensive_setup')) {
 
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size(730, 390, true); // размер миниатюры поста по умолчанию
+add_image_size( 'slider', 350, 230, true );
 
 //! подключение стилей и скриптов
 
@@ -103,7 +104,7 @@ function sensive_scripts()
   wp_enqueue_style('linericon', get_template_directory_uri() . '/vendors/linericon/style.css', array('main'), null);
 
   //owl-carousel
-  wp_enqueue_style('owl-carousel', get_template_directory_uri() . '/vendors/linericon/style.css', array('main'), null);
+  wp_enqueue_style('owl-carousel', get_template_directory_uri() . '/vendors/owl-carousel/owl.theme.default.min.css', array('main'), null);
 
   //owl-carousel
   wp_enqueue_style('owl-carousel', get_template_directory_uri() . '/vendors/owl-carousel/owl.carousel.min.css', array('main'), null);
@@ -134,7 +135,7 @@ function sensive_scripts()
 
   // main
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
-}
+  }
 
 // ! регистрируем несколько областей меню
 function sensive_menus()
@@ -145,6 +146,7 @@ function sensive_menus()
     // собираем несколько зон (областей ) меню 
     'header'   => __('Header Menu', 'sensive'),
     'menu-social-header'   => __('Menu Social Header', 'sensive'),
+    'menu-social-footer'   => __('Menu Social Footer', 'sensive'),
     // 'footer_left'   => __('Footer Left Menu', 'sensive'),
     // 'footer_right'   => __('Footer Right Menu', 'sensive'),
   );
@@ -264,6 +266,48 @@ function my_action_callback()
 }
 
 
+//! новый тип записей
+  // tours
+
+  add_action('init', 'my_custom_init');
+  function my_custom_init()
+  {
+    register_post_type('tours', array(
+        'labels'             => array(
+        'name'               => 'Туры', // Основное название типа записи
+        'singular_name'      => 'Тур', // отдельное название записи типа Tours
+        'add_new'            => 'Добавить новый',
+        'add_new_item'       => 'Добавить новый тур',
+        'edit_item'          => 'Редактировать тур',
+        'new_item'           => 'Новый тур',
+        'view_item'          => 'Посмотреть тур',
+        'search_items'       => 'Найти тур',
+        'not_found'          => 'Туров не найдено',
+        'not_found_in_trash' => 'В корзине туров не найдено',
+        'parent_item_colon'  => '',
+        'menu_name'          => 'Туры'
+
+
+      ),
+      'pages' => true,
+      'author'             => true,
+      'public'             => true,
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'query_var'          => true,
+      'rewrite'            => true,
+      'capability_type'    => 'post',
+      'menu_icon'          => 'dashicons-admin-site-alt2',
+      'has_archive'        => true,
+      'hierarchical'       => true,
+      'has_archive'        => true,
+      'menu_position'      => 1,
+      'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
+      'taxonomies'  => array('category', 'post_tag'),
+    ));    
+  }
+
 // ! отключаем создание миниатюр файлов для указанных размеров
 add_filter('intermediate_image_sizes', 'delete_intermediate_image_sizes');
 function delete_intermediate_image_sizes($sizes)
@@ -300,6 +344,7 @@ function my_navigation_template($template, $class)
 the_posts_pagination(array(
   'end_size' => 2,
 ));
+
 
 
 //! шаблон для комментариев
@@ -782,3 +827,77 @@ class Bootstrap_Walker_Comment extends Walker
       <?php
     }
   }
+
+  // ! граватар
+  add_filter('avatar_defaults', 'wpb_new_gravatar');
+  function wpb_new_gravatar($avatar_defaults)
+  {
+    $myavatar = 'https://alexander-shnipov.ru/wp-content/uploads/2022/01/IMG_0236-scaled.jpg';
+    $avatar_defaults[$myavatar] = "Default Gravatar";
+    return $avatar_defaults;
+  }
+
+  //! создать виджеты
+  add_action('widgets_init', 'sensive_widgets_init');
+  function sensive_widgets_init()
+  {
+
+    register_sidebar(array(
+      'name'          => 'Сайдбар в на главной',
+      'id'            => "sidebar-front-page",
+      'before_widget' => '<section id="%1$s" class="single-sidebar-widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4 class="single-sidebar-widget__title">',
+      'after_title'   => '</h4>'
+    ));
+
+    register_sidebar(array(
+      'name'          => 'Сайдбар блога',
+      'id'            => "sidebar-blog",
+      'before_widget' => '<section id="%1$s" class="single-sidebar-widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4 class="single-sidebar-widget__title">',
+      'after_title'   => '</h4>'
+    ));
+
+    register_sidebar(array(
+      'name'          => 'Сайдбар туров',
+      'id'            => 'sidebar-tours',
+      'before_widget' => '<section id="%1$s" class="single-sidebar-widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4 class="single-sidebar-widget__title">',
+      'after_title'   => '</h4>'
+    ));
+
+    register_sidebar(array(
+      'name'          => 'Сайдбар в подвале текст',
+      'id'            => "sidebar-footer-text",
+      'before_widget' => '<section id="%1$s" class="single-footer-widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h6>',
+      'after_title'   => '</h6>'
+    ));
+
+    register_sidebar(array(
+      'name'          => 'Социальные сети в подвале',
+      'id'            => "sidebar-footer-social",
+      'before_widget' => '<section id="%1$s" class="single-footer-widget footer-social d-flex align-items-center  %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h6>',
+      'after_title'   => '</h6>',
+      'after_title'   => '<p class="footer-social__slogan">Давайте будем социальными</p>'
+    ));
+  }
+
+
+  function wpse120407_pre_get_posts( $query ) {
+    // Test for category archive index
+    // and ensure that the query is the main query
+    // and not a secondary query (such as a nav menu
+    // or recent posts widget output, etc.
+    if ( is_category() && $query->is_main_query() ) {
+        // Modify posts per page
+        $query->set( 'posts_per_page', 5 ); 
+    }
+}
+add_action( 'pre_get_posts', 'wpse120407_pre_get_posts' );

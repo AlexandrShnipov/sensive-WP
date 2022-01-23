@@ -7,8 +7,8 @@
         <h1><?php echo the_field('title',$post->ID);?></h1>
         <nav aria-label="breadcrumb" class="banner-breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+          <li class="breadcrumb-item"><a href="<?php echo get_permalink(32); ?>"><?php echo get_the_title(32);?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php the_title();?></li>
           </ol>
         </nav>
       </div>

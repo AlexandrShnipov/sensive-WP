@@ -5,8 +5,8 @@
     <div class="container">
       <div class="hero-banner">
         <div class="hero-banner__content">
-          <h3>Tours & Travels</h3>
-          <h1>Amazing Places on earth</h1>
+          <h3><?php echo the_field('subtitle',$post->ID);?></h3>
+          <h1><?php echo the_field('title',$post->ID);?></h1>
           <h4></h4>
         </div>
       </div>
@@ -18,60 +18,52 @@
   <section>
     <div class="container">
       <div class="owl-carousel owl-theme blog-slider">
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide1.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide2.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide3.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide1.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide2.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
-        <div class="card blog__slide text-center">
-          <div class="blog__slide__img">
-            <img class="card-img rounded-0" src="img/blog/blog-slider/blog-slide3.png" alt="">
-          </div>
-          <div class="blog__slide__content">
-            <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-            <p>2 days ago</p>
-          </div>
-        </div>
+
+        <?php
+        global $post;
+
+        $query = new WP_Query([
+          'posts_per_page' => 5,
+          'post_type'        => 'tours',
+        ]);
+
+        if ($query->have_posts()) {
+          while ($query->have_posts()) {
+            $query->the_post();
+        ?>
+
+
+            <div class="card blog__slide text-center">
+              <div class="blog__slide__img">
+                <?php
+                //должно находится внутри цикла
+                if (has_post_thumbnail()) {
+                  the_post_thumbnail(
+                    'slider',
+                    array(
+                      'class' => "card-img rounded-0"
+                    )
+                  );
+                } else {
+                  echo '<img class="card-img rounded-0" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
+                }
+                ?>
+              </div>
+              <div class="blog__slide__content">
+                <h3><a href="<?php echo get_the_permalink() ?>"><?php the_title(); ?></a></h3>
+                <p><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' назад'; ?></p>
+              </div>
+            </div>
+
+
+        <?php
+          }
+        } else {
+          // Постов не найдено
+        }
+        wp_reset_postdata(); // Сбрасываем $post
+        ?>
+
       </div>
     </div>
   </section>
@@ -98,15 +90,15 @@
               <div class="single-recent-blog-post">
                 <div class="thumb">
                   <?php if (has_post_thumbnail()) {
-                  the_post_thumbnail(
-                    'post-thumbnail',
-                    array(
-                      'class' => "img-fluid w-100"
-                    )
-                  );
-                } else {
-                  echo '<img class="img-fluid" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
-                } ?>
+                    the_post_thumbnail(
+                      'post-thumbnail',
+                      array(
+                        'class' => "img-fluid w-100"
+                      )
+                    );
+                  } else {
+                    echo '<img class="img-fluid" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
+                  } ?>
                   <img class="img-fluid" src="img/blog/blog1.png" alt="">
                   <ul class="thumb-info">
                     <li><a href="#"><i class="ti-user"></i><?php the_author() ?></a></li>
@@ -117,9 +109,9 @@
                 <div class="details mt-20">
                   <a href="<?php echo get_the_permalink(); ?>">
                     <h3><?php the_title(); ?></h3>
-                  </a>         
+                  </a>
                   <p class="tag-list-inline">Категории: <?php the_category(', '); ?></p>
-                  <p class="tag-list-inline">Теги: <?php the_tags(); ?></p>
+                  <p class="tag-list-inline"><?php the_tags(); ?></p>
                   <?php the_excerpt(); ?>
                   <a class="button" href="<?php echo get_the_permalink() ?>">Читать далее <i class="ti-arrow-right"></i></a>
                 </div>
@@ -136,18 +128,11 @@
         </div>
 
         <!-- Start Blog Post Siddebar -->
-        <div class="col-lg-4 sidebar-widgets">
-          <div class="widget-wrap">
-            <div class="single-sidebar-widget newsletter-widget">
-              <form action="#">
-                <div class="d-flex flex-row">
-                  <input class="form-control" name="q" placeholder="Search" required="" type="text" value="">
-                  <button class="click-btn btn btn-default bbtns"><i class="ti-search"></i></button>
-                </div>
-              </form>
-            </div>
 
-            <!-- <div class="single-sidebar-widget newsletter-widget">
+        <?php get_sidebar('front-page'); ?>
+
+
+        <!-- <div class="single-sidebar-widget newsletter-widget">
                   <h4 class="single-sidebar-widget__title">Newsletter</h4>
                   <div class="form-group mt-30">
                     <div class="col-autos">
@@ -158,123 +143,58 @@
                   <button class="bbtns d-block mt-20 w-100">Subcribe</button>
                 </div> -->
 
-            <div class="single-sidebar-widget post-category-widget">
-              <h4 class="single-sidebar-widget__title">Category</h4>
-              <ul class="cat-list mt-20">
-                <li>
-                  <a href="archive.html" class="d-flex justify-content-between">
-                    <p>Technology</p>
-                    <p>(03)</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="archive.html" class="d-flex justify-content-between">
-                    <p>Software</p>
-                    <p>(09)</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="archive.html" class="d-flex justify-content-between">
-                    <p>Lifestyle</p>
-                    <p>(12)</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="archive.html" class="d-flex justify-content-between">
-                    <p>Shopping</p>
-                    <p>(02)</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="archive.html" class="d-flex justify-content-between">
-                    <p>Food</p>
-                    <p>(10)</p>
-                  </a>
-                </li>
-              </ul>
-            </div>
 
-            <div class="single-sidebar-widget popular-post-widget">
-              <h4 class="single-sidebar-widget__title">Popular Post</h4>
-              <div class="popular-post-list">
-                <div class="single-post-list">
-                  <div class="thumb">
-                    <img class="card-img rounded-0" src="img/blog/thumb/thumb1.png" alt="">
-                    <ul class="thumb-info">
-                      <li><a href="#">Adam Colinge</a></li>
-                      <li><a href="#">Dec 15</a></li>
-                    </ul>
-                  </div>
-                  <div class="details mt-20">
-                    <a href="blog-single.html">
-                      <h6>Accused of assaulting flight attendant miktake alaways</h6>
-                    </a>
-                  </div>
-                </div>
-                <div class="single-post-list">
-                  <div class="thumb">
-                    <img class="card-img rounded-0" src="img/blog/thumb/thumb2.png" alt="">
-                    <ul class="thumb-info">
-                      <li><a href="#">Adam Colinge</a></li>
-                      <li><a href="#">Dec 15</a></li>
-                    </ul>
-                  </div>
-                  <div class="details mt-20">
-                    <a href="blog-single.html">
-                      <h6>Tennessee outback steakhouse the
-                        worker diagnosed</h6>
-                    </a>
-                  </div>
-                </div>
-                <div class="single-post-list">
-                  <div class="thumb">
-                    <img class="card-img rounded-0" src="img/blog/thumb/thumb3.png" alt="">
-                    <ul class="thumb-info">
-                      <li><a href="#">Adam Colinge</a></li>
-                      <li><a href="#">Dec 15</a></li>
-                    </ul>
-                  </div>
-                  <div class="details mt-20">
-                    <a href="blog-single.html">
-                      <h6>Tennessee outback steakhouse the
-                        worker diagnosed</h6>
-                    </a>
-                  </div>
-                </div>
+        <div class="single-sidebar-widget popular-post-widget">
+          <h4 class="single-sidebar-widget__title">Popular Post</h4>
+          <div class="popular-post-list">
+            <div class="single-post-list">
+              <div class="thumb">
+                <img class="card-img rounded-0" src="img/blog/thumb/thumb1.png" alt="">
+                <ul class="thumb-info">
+                  <li><a href="#">Adam Colinge</a></li>
+                  <li><a href="#">Dec 15</a></li>
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="blog-single.html">
+                  <h6>Accused of assaulting flight attendant miktake alaways</h6>
+                </a>
               </div>
             </div>
-
-            <div class="single-sidebar-widget tag_cloud_widget">
-              <h4 class="single-sidebar-widget__title">Tags</h4>
-              <ul class="list">
-                <li>
-                  <a href="#">project</a>
-                </li>
-                <li>
-                  <a href="#">love</a>
-                </li>
-                <li>
-                  <a href="#">technology</a>
-                </li>
-                <li>
-                  <a href="#">travel</a>
-                </li>
-                <li>
-                  <a href="#">software</a>
-                </li>
-                <li>
-                  <a href="#">life style</a>
-                </li>
-                <li>
-                  <a href="#">design</a>
-                </li>
-                <li>
-                  <a href="#">illustration</a>
-                </li>
-              </ul>
+            <div class="single-post-list">
+              <div class="thumb">
+                <img class="card-img rounded-0" src="img/blog/thumb/thumb2.png" alt="">
+                <ul class="thumb-info">
+                  <li><a href="#">Adam Colinge</a></li>
+                  <li><a href="#">Dec 15</a></li>
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="blog-single.html">
+                  <h6>Tennessee outback steakhouse the
+                    worker diagnosed</h6>
+                </a>
+              </div>
+            </div>
+            <div class="single-post-list">
+              <div class="thumb">
+                <img class="card-img rounded-0" src="img/blog/thumb/thumb3.png" alt="">
+                <ul class="thumb-info">
+                  <li><a href="#">Adam Colinge</a></li>
+                  <li><a href="#">Dec 15</a></li>
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="blog-single.html">
+                  <h6>Tennessee outback steakhouse the
+                    worker diagnosed</h6>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
+
       </div>
       <!-- End Blog Post Siddebar -->
     </div>

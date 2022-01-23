@@ -7,7 +7,7 @@
           <h1>404 Страница не найдена</h1>
           <nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo get_permalink(32); ?>">Главная</a></li>
               <li class="breadcrumb-item active" aria-current="page">404 страница не найдена</li>
             </ol>
           </nav>
