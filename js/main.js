@@ -53,7 +53,7 @@ $(function() {
         smartSpeed: 1500,
         dots: false,
         responsiveClass: true,
-        navText : ["<div class='blog-slider__leftArrow'><img src='img/home/left-arrow.png'></div>","<div class='blog-slider__rightArrow'><img src='img/home/right-arrow.png'></div>"],
+        navText : ["<div class='blog-slider__leftArrow'><img src='https://alexander-shnipov.ru/wp-content/uploads/2022/01/left-arrow.png'></div>","<div class='blog-slider__rightArrow'><img src='https://alexander-shnipov.ru/wp-content/uploads/2022/01/right-arrow.png'></div>"],
         responsive:{
           0:{
               items:1

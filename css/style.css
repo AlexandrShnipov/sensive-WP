@@ -64,13 +64,13 @@ h3,
     font-weight: 700;
 }
 
-footer p{
+footer p {
     color: #797979;
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
     line-height: 1.625;
     font-size: 16px;
-    }
+}
 
 a {
     display: inline-block;
@@ -860,6 +860,11 @@ a {
     background-color: transparent;
 }
 
+.owl-stage-outer {
+    position: relative;
+    overflow: hidden;
+}
+
 .blog__slide__content {
     padding: 30px 15px;
 }
@@ -887,10 +892,21 @@ a {
     position: relative;
 }
 
+.owl-prev,
+.owl-next{
+    background: 0 0;
+    color: inherit;
+    color: inherit;
+    padding: 0!important;
+    padding: 0!important;
+    border: none;
+}
+
 .blog-slider .blog-slider__leftArrow {
     position: absolute;
     top: 22%;
     left: -12px;
+    content: '\1F816';
 }
 
 @media (min-width: 1250px) {
@@ -913,7 +929,7 @@ a {
     }
 
     .blog-slider .blog-slider__leftArrow::before {
-        content: "";
+        content: "\1F816";
         display: block;
         width: 40px;
         height: 130%;
@@ -1406,7 +1422,7 @@ a {
 
 .widget-wrap .tagcloud a:hover {
     background: #222;
-    color: #ff9907;   
+    color: #ff9907;
 }
 
 .widget-wrap .search-widget form.search-form input[type="text"] {
@@ -2513,7 +2529,7 @@ a {
     margin: 5px;
 }
 
-ul.menu{
+ul.menu {
     display: flex;
 }
 
@@ -2534,7 +2550,7 @@ ul.menu{
     transition: all 0.3s ease 0s;
 }
 
-.footer-social__slogan{
+.footer-social__slogan {
     padding-top: 25px;
 }
 
@@ -2716,6 +2732,33 @@ li.comment {
     text-align: center;
 }
 
-.wp-pagenavi .pages{
-    display:none;
+.wp-pagenavi {
+    display: flex;
+}
+
+.pages {
+    display: none;
+}
+
+.wp-pagenavi .current,
+.wp-pagenavi .page.larger,
+.wp-pagenavi .page.smaller,
+.wp-pagenavi .nextpostslink,
+.wp-pagenavi .previouspostslink {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    position: relative;
+    display: block;
+    padding: 0.8rem 1.05rem;
+    margin: 0 5px;
+    line-height: 1.25;
+    color: #222;
+    background: transparent;
+    border-radius: 0;
+    border: 2px solid #eeeeee;
+}
+
+.page-link .page-item {
+    content: '\	&#xA2' !important;
 }

@@ -5,11 +5,11 @@
   <div class="container">
     <div class="hero-banner hero-banner--sm">
       <div class="hero-banner__content">
-      <h1><?php echo the_field('title', 193);?></h1>
+        <h1><?php echo the_field('title', 193); ?></h1>
         <nav aria-label="breadcrumb" class="banner-breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo get_permalink(32); ?>">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?php echo the_field('title', 193);?></li>
+            <li class="breadcrumb-item"><a href="<?php echo get_permalink(32); ?>">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo the_field('title', 193); ?></li>
           </ol>
         </nav>
       </div>
@@ -25,7 +25,7 @@
       <div class="col-lg-8">
 
         <!-- цикл постов -->
-        
+
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
             <!-- Вывод постов, функции цикла: the_title() и т.д. -->
             <div class="single-recent-blog-post">
@@ -46,7 +46,7 @@
                 <ul class="thumb-info">
                   <li>
                     <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
-                    <i class="ti-user"></i><?php the_author(); ?>
+                      <i class="ti-user"></i><?php the_author(); ?>
                     </a>
                   </li>
                   <li>
@@ -85,8 +85,8 @@
                     'end_size'     => 1,     // количество страниц на концах
                     'mid_size'     => 1,     // количество страниц вокруг текущей
                     'prev_next'    => true,  // выводить ли боковые ссылки "предыдущая/следующая страница".
-                    'prev_text'    => __('<span class="page-link page-item ti-angle-left m-1"</span>'),
-                    'next_text'    => __('<span class="page-link page-item ti-angle-right m-1"</span>'),
+                    'prev_text'    => __('<span class="page-link page-item m-1">&#x3C;</span></span>'),
+                    'next_text'    => __('<span class="page-link page-item m-1">&#x3E;</span></span>'),
                     'before_page_number' => '<span class="page-link">',
                     'after_page_number' => '</span>',
                     'add_fragment' => '',     // Текст который добавиться ко всем ссылкам.

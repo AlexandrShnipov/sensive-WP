@@ -89,20 +89,7 @@
                 <div class="col-lg-12">
                   <nav class="blog-pagination justify-content-center d-flex">
                     <ul class="pagination">
-                      <?php get_the_posts_pagination(
-                        array(
-                          'show_all'     => false, // показаны все страницы участвующие в пагинации
-                          'end_size'     => 1,     // количество страниц на концах
-                          'mid_size'     => 1,     // количество страниц вокруг текущей
-                          'prev_next'    => true,  // выводить ли боковые ссылки "предыдущая/следующая страница".
-                          'prev_text'    => __('<span class="page-link page-item ti-angle-left m-1"</span>'),
-                          'next_text'    => __('<span class="page-link page-item ti-angle-right m-1"</span>'),
-                          'before_page_number' => '<span class="page-link">',
-                          'after_page_number' => '</span>',
-                          'add_fragment' => '',     // Текст который добавиться ко всем ссылкам.
-                          'screen_reader_text' => __('Posts navigation'),
-                        )
-                      ); ?>
+                      <?php  wp_pagenavi(); ?>
                     </ul>
                   </nav>
                 </div>

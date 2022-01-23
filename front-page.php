@@ -5,8 +5,8 @@
     <div class="container">
       <div class="hero-banner">
         <div class="hero-banner__content">
-          <h3><?php echo the_field('subtitle',$post->ID);?></h3>
-          <h1><?php echo the_field('title',$post->ID);?></h1>
+          <h3><?php echo the_field('subtitle', $post->ID); ?></h3>
+          <h1><?php echo the_field('title', $post->ID); ?></h1>
           <h4></h4>
         </div>
       </div>
@@ -18,6 +18,7 @@
   <section>
     <div class="container">
       <div class="owl-carousel owl-theme blog-slider">
+
 
         <?php
         global $post;
@@ -32,29 +33,29 @@
             $query->the_post();
         ?>
 
-
-            <div class="card blog__slide text-center">
-              <div class="blog__slide__img">
-                <?php
-                //должно находится внутри цикла
-                if (has_post_thumbnail()) {
-                  the_post_thumbnail(
-                    'slider',
-                    array(
-                      'class' => "card-img rounded-0"
-                    )
-                  );
-                } else {
-                  echo '<img class="card-img rounded-0" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
-                }
-                ?>
-              </div>
-              <div class="blog__slide__content">
-                <h3><a href="<?php echo get_the_permalink() ?>"><?php the_title(); ?></a></h3>
-                <p><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' назад'; ?></p>
+            <div class="owl-stage-outer">
+              <div class="card blog__slide text-center">
+                <div class="blog__slide__img">
+                  <?php
+                  //должно находится внутри цикла
+                  if (has_post_thumbnail()) {
+                    the_post_thumbnail(
+                      'slider',
+                      array(
+                        'class' => "card-img rounded-0"
+                      )
+                    );
+                  } else {
+                    echo '<img class="card-img rounded-0" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
+                  }
+                  ?>
+                </div>
+                <div class="blog__slide__content">
+                  <h3><a href="<?php echo get_the_permalink() ?>"><?php the_title(); ?></a></h3>
+                  <p><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' назад'; ?></p>
+                </div>
               </div>
             </div>
-
 
         <?php
           }
@@ -101,7 +102,7 @@
                   } ?>
                   <img class="img-fluid" src="img/blog/blog1.png" alt="">
                   <ul class="thumb-info">
-                    <li><a href="#"><i class="ti-user"></i><?php the_author() ?></a></li>
+                    <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><i class="ti-user"></i><?php the_author() ?></a></li>
                     <li><a href="#"><i class="ti-notepad"></i><?php the_time('j F Y'); ?></a></li>
                     <li><a href="#"><i class="ti-themify-favicon"></i><?php comments_number() ?></a></li>
                   </ul>
