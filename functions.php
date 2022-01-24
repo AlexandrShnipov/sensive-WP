@@ -849,16 +849,7 @@ class Bootstrap_Walker_Comment extends Walker
   //! создать виджеты
   add_action('widgets_init', 'sensive_widgets_init');
   function sensive_widgets_init()
-  {
-
-    register_sidebar(array(
-      'name'          => 'Сайдбар в на главной',
-      'id'            => "sidebar-front-page",
-      'before_widget' => '<section id="%1$s" class="single-sidebar-widget %2$s">',
-      'after_widget'  => '</section>',
-      'before_title'  => '<h4 class="single-sidebar-widget__title">',
-      'after_title'   => '</h4>'
-    ));
+  {  
 
     register_sidebar(array(
       'name'          => 'Сайдбар блога',
@@ -895,6 +886,15 @@ class Bootstrap_Walker_Comment extends Walker
       'before_title'  => '<h6>',
       'after_title'   => '</h6>',
       'after_title'   => '<p class="footer-social__slogan">Давайте будем социальными</p>'
+    ));
+
+    register_sidebar(array(
+      'name'          => 'Сайдбар на главной',
+      'id'            => "sidebar-front-page",
+      'before_widget' => '<section id="%1$s" class="single-sidebar-widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4 class="single-sidebar-widget__title">',
+      'after_title'   => '</h4>'
     ));
   }
 

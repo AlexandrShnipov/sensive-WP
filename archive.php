@@ -77,7 +77,7 @@
 
               <?php endwhile;
           else : ?>
-              Записей нет.
+                К сожалению, ни один из постов не подошел под ваши критерии.
             <?php endif; ?>
             <!-- цикл постов -->
               </div>
@@ -89,7 +89,7 @@
                 <div class="col-lg-12">
                   <nav class="blog-pagination justify-content-center d-flex">
                     <ul class="pagination">
-                      <?php  wp_pagenavi(); ?>
+                    <?php wp_pagenavi(); ?>
                     </ul>
                   </nav>
                 </div>

@@ -43,8 +43,8 @@
                   ?>
                   <div class="thumb">
                     <ul class="thumb-info">
-                      <li><a href="#"><i class="ti-user"></i><?php the_author(); ?></a></li>
-                      <li><a href="#"><i class="ti-themify-favicon"></i><?php comments_number() ?></a></li>
+                      <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><i class="ti-user"></i><?php the_author(); ?></a></li>
+                      <li><a href="#" ><i class="ti-themify-favicon"></i><?php comments_number() ?></a></li>
                     </ul>
                   </div>
                   <div class="details mt-20">
@@ -70,10 +70,7 @@
                 <div class="col-lg-12">
                   <nav class="blog-pagination justify-content-center d-flex">
                     <ul class="pagination">
-                      <?php
-                      wp_pagenavi();
-                      
-               ?>
+                      <?php wp_pagenavi(); ?>
                     </ul>
                   </nav>
                 </div>

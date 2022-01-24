@@ -126,7 +126,7 @@ endif;
 
 <!-- Start Blog Post Siddebar -->
 
-<?php get_sidebar('tours') ?>
+<?php get_sidebar('tours'); ?>
 </div>
 <!-- End Blog Post Siddebar -->
 </div>
