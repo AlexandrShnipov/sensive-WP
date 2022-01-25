@@ -38,7 +38,7 @@
                       )
                     );
                   } else {
-                    echo '<img class="img-fluid" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
+                    echo '<img class="img-fluid w-100" src="' . get_template_directory_uri() . '/img/blog/dummi.jpg"/>';
                   }
                   ?>
                   <div class="thumb">
@@ -78,7 +78,9 @@
         </div>
 
         <!-- Start Blog Post Siddebar -->
-        <?php get_sidebar(); ?>
+        <?php get_sidebar('front-page'); ?>
+
+       
       </div>
       <!-- End Blog Post Siddebar -->
     </div>

@@ -2540,6 +2540,7 @@ ul.menu {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     font-size: 13px;
+    padding-right: 10px;
 }
 
 .footer-social a {
@@ -2759,6 +2760,78 @@ li.comment {
     border: 2px solid #eeeeee;
 }
 
+.wp-pagenavi .current:hover,
+.wp-pagenavi .page.larger:hover,
+.wp-pagenavi .page.smaller:hover,
+.wp-pagenavi .nextpostslink:hover,
+.wp-pagenavi .previouspostslink:hover{
+    border-color: #222;
+    color: #ff9907;
+}
+
+
+
+
 .page-link .page-item {
     content: '\	&#xA2' !important;
+}
+
+/* галерея */
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;    
+}
+
+.gallery-item{
+    margin: 0 0 10px;
+}
+
+.footer-social a{
+    padding: 0;
+}
+
+/* form footer */
+
+#mc_embed_signup input{
+    border:none !important;
+    border-radius: none !important;
+} 
+
+#mc_embed_signup form{
+    padding-left: 0 !important;
+}
+
+/* популярные посты */
+
+.popular-posts h4{
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 22px;
+}
+
+.wpp-post-title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-bottom: 10px;
+    color: #3a414e;
+    transition: all 0.3s ease 0s;
+}
+
+.wpp-author a{
+    color:inherit;
+    transition: all 0.3s ease 0s;
+}
+
+.wpp-author a:hover,
+.wpp-post-title:hover{
+    color: #ff9907;
+}
+
+.post-stats{
+    background-color: #fff !important;
 }

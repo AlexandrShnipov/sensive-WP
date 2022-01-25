@@ -112,8 +112,7 @@ function sensive_scripts()
   // подключаем основные стили
   wp_enqueue_style('sensive', get_template_directory_uri() . '/css/style.css', array('main'), null);
 
-  //! переподключаем jQuery
-  wp_deregister_script( 'jquery-core' );
+  //! переподключаем jQuery 
   wp_deregister_script('jquery');
   wp_register_script( 'jquery-core', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, null, true );
   wp_register_script('jquery', get_template_directory_uri() . '/vendors/jquery/jquery-3.2.1.min.js');
@@ -137,12 +136,6 @@ function sensive_scripts()
 
   // main
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
-  }
-
-  function action_function_name_7714(){
-    wp_localize_script( 'jquery', 'sensive', array( 
-      'template_url' => get_template_directory_uri(), 
-    ) );
   }
 
 
@@ -896,6 +889,26 @@ class Bootstrap_Walker_Comment extends Walker
       'before_title'  => '<h4 class="single-sidebar-widget__title">',
       'after_title'   => '</h4>'
     ));
+
+    
+    register_sidebar(array(
+      'name'          => 'Галлерея в подвале',
+      'id'            => "sidebar-footer-gallery",
+      'before_widget' => '<section id="%1$s" class="single-footer-widget footer-social %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h6>',
+      'after_title'   => '</h6>',     
+    ));
+
+    // register_sidebar(array(
+    //   'name'          => 'Подписка в подвале',
+    //   'id'            => "sidebar-footer-newsletter",
+    //   'before_widget' => '<section id="%1$s" class="single-footer-widget footer-social %2$s">',
+    //   'after_widget'  => '</section>',
+    //   'before_title'  => '<h6>',
+    //   'after_title'   => '</h6>', 
+    //   'after_title'   => '<p class="footer-social__slogan">Давайте будем социальными</p>'    
+    // ));
   }
 
 
@@ -910,3 +923,15 @@ class Bootstrap_Walker_Comment extends Walker
     }
 }
 add_action( 'pre_get_posts', 'wpse120407_pre_get_posts' );
+
+
+//! удаляем страницы из результатов поиска
+if ( !is_admin() ) {
+  function wpschool_search_filter($query) {
+      if ( $query->is_search ) {
+          $query->set('post_type', 'post');
+      }
+  return $query;
+}
+add_filter( 'pre_get_posts','wpschool_search_filter' );
+}

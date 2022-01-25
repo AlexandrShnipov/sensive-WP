@@ -80,7 +80,7 @@
           global $post;
 
           $query = new WP_Query([
-            'posts_per_page' => 4,
+            'posts_per_page' => 5,
             'post_type' => 'post',
           ]);
 
