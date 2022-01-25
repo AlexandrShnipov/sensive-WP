@@ -74,6 +74,16 @@ footer p {
 
 a {
     display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+a:hover{
+    color:#ff9907 !important;
+}
+
+.float-left a:hover,
+.btn-reply.text-uppercase{
+    color: #828bb2 !important;
 }
 
 .owl-carousel .owl-stage {
@@ -893,12 +903,12 @@ a {
 }
 
 .owl-prev,
-.owl-next{
+.owl-next {
     background: 0 0;
     color: inherit;
     color: inherit;
-    padding: 0!important;
-    padding: 0!important;
+    padding: 0 !important;
+    padding: 0 !important;
     border: none;
 }
 
@@ -1099,6 +1109,19 @@ a {
 
 .single-recent-blog-post .details h3 {
     font-size: 21px;
+}
+
+.details a h3 {
+    transition: all 0.3s ease 0s;
+}
+
+.details a h3:hover {
+    color: #ff9907;
+    ;
+}
+
+.tag-list-inline a:hover{
+    color: #ff9907 !important;
 }
 
 @media (min-width: 600px) {
@@ -2764,14 +2787,14 @@ li.comment {
 .wp-pagenavi .page.larger:hover,
 .wp-pagenavi .page.smaller:hover,
 .wp-pagenavi .nextpostslink:hover,
-.wp-pagenavi .previouspostslink:hover{
+.wp-pagenavi .previouspostslink:hover {
     border-color: #222;
     color: #ff9907;
 }
 
-span.current{
-    color: #ff9907 !important; 
-    border-color: #222 !important; 
+span.current {
+    color: #ff9907 !important;
+    border-color: #222 !important;
 }
 
 
@@ -2781,34 +2804,34 @@ span.current{
 
 /* галерея */
 
-.gallery{
+.gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 
-.gallery-item{
+.gallery-item {
     margin: 0 0 10px;
 }
 
-.footer-social a{
+.footer-social a {
     padding: 0;
 }
 
 /* form footer */
 
-#mc_embed_signup input{
-    border:none !important;
+#mc_embed_signup input {
+    border: none !important;
     border-radius: none !important;
-} 
+}
 
-#mc_embed_signup form{
+#mc_embed_signup form {
     padding-left: 0 !important;
 }
 
 /* популярные посты */
 
-.popular-posts h4{
+.popular-posts h4 {
     font-size: 20px;
     font-weight: 700;
     position: relative;
@@ -2816,7 +2839,7 @@ span.current{
     margin-bottom: 22px;
 }
 
-.wpp-post-title{
+.wpp-post-title {
     font-size: 16px;
     font-weight: 700;
     line-height: 26px;
@@ -2825,16 +2848,16 @@ span.current{
     transition: all 0.3s ease 0s;
 }
 
-.wpp-author a{
-    color:inherit;
+.wpp-author a {
+    color: inherit;
     transition: all 0.3s ease 0s;
 }
 
 .wpp-author a:hover,
-.wpp-post-title:hover{
+.wpp-post-title:hover {
     color: #ff9907;
 }
 
-.post-stats{
+.post-stats {
     background-color: #fff !important;
 }
