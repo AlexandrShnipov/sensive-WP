@@ -929,9 +929,10 @@ add_action( 'pre_get_posts', 'wpse120407_pre_get_posts' );
 if ( !is_admin() ) {
   function wpschool_search_filter($query) {
       if ( $query->is_search ) {
-          $query->set('post_type', 'post');
+          $query->set('post_type', array('post', 'tours'));
       }
   return $query;
 }
 add_filter( 'pre_get_posts','wpschool_search_filter' );
 }
+

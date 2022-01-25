@@ -2769,7 +2769,10 @@ li.comment {
     color: #ff9907;
 }
 
-
+span.current{
+    color: #ff9907 !important; 
+    border-color: #222 !important; 
+}
 
 
 .page-link .page-item {

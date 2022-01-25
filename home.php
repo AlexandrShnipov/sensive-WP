@@ -50,10 +50,10 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#"><i class="ti-notepad"></i><?php the_time('j F Y'); ?></a>
+                    <a href="<?php echo get_the_permalink() ?>"><i class="ti-notepad"></i><?php the_time('j F Y'); ?></a>
                   </li>
                   <li>
-                    <a href="#"><i class="ti-themify-favicon"></i><?php comments_number(); ?></a>
+                    <a href="<?php echo get_the_permalink() ?>"><i class="ti-themify-favicon"></i><?php comments_number(); ?></a>
                   </li>
                 </ul>
               </div>
