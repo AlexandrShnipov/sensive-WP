@@ -68,9 +68,9 @@
                   </div>
                   <div class="details mt-20">
                     <a href="<?php echo get_the_permalink() ?>">
-                      <h3><?php the_title(); ?></h3>
+                      <h3><?php echo title(13); ?></h3>
                     </a>
-                    <p><?php the_excerpt(); ?></p>
+                    <p><?php echo excerpt(14); ?></p>
                     <a class="button" href="<?php echo get_the_permalink() ?>">Читать далее <i class="ti-arrow-right"></i></a>
                   </div>
                 </div>

@@ -22,9 +22,7 @@ if (post_password_required()) {
           'max_depth'         => '2',
           'style'             => 'ol',
           'type'              => 'all',
-          'reply_text'        => ' <div class="reply-btn d-flex">
-          <a href="" class="btn-reply text-uppercase">ОТВЕТИТЬ</a>
-        </div>',
+          'reply_text'        => ' <div class="reply-btn d-flex btn-reply text-uppercase">ОТВЕТИТЬ</div>',
           'per_page'          => '10',
           'avatar_size'       => 80,
           'format'            => 'html5', // или xhtml, если HTML5 не поддерживается темой
@@ -102,6 +100,6 @@ if (post_password_required()) {
   comment_form($defaults);
   ?>
 
-  
+
 
 </div><!-- #comments -->

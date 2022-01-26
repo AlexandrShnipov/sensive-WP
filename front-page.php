@@ -51,7 +51,7 @@
                   ?>
                 </div>
                 <div class="blog__slide__content">
-                  <h3><a href="<?php echo get_the_permalink() ?>"><?php the_title(); ?></a></h3>
+                  <h3><a href="<?php echo get_the_permalink() ?>"><?php  echo title(10); ?></a></h3>
                   <p><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' назад'; ?></p>
                 </div>
               </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="details mt-20">
                   <a href="<?php echo get_the_permalink(); ?>">
-                    <h3><?php the_title(); ?></h3>
+                    <h3><?php echo title(20); ?></h3>
                   </a>
                   <p class="tag-list-inline">Категории: <?php the_category(', '); ?></p>
                   <p class="tag-list-inline"><?php the_tags(); ?></p>

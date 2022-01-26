@@ -53,14 +53,7 @@
         'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 
       ]); ?>
-      <!--  -->
-
-
-
-      <!-- <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-dribbble"></i></a>
-      <a href="#"><i class="fab fa-behance"></i></a> -->
+     
     </div>
   </div>
 </div>
