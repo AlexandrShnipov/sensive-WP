@@ -1,5 +1,5 @@
  <!--================ Start Footer Area =================-->
- <footer class="footer-area section-padding">
+ <footer class="footer-area section-padding mb-auto">
    <div class="container">
      <div class="row">
 
@@ -24,7 +24,7 @@
                  <!-- Thank you page (optional) -->
                  <input type="hidden" name="thankyou_url" value="<?php echo home_url('thankyou'); ?>" />
                  <!-- Add subscriber to the follow-up sequence with a specified day (optional) -->
-                 <button class="click-btn btn btn-default" type="hidden" name="start_day" value="0"><span class="lnr lnr-arrow-right"></span></button>
+                 <button class="click-btn btn btn-default" type="submit" name="start_day" value="0"><span class="lnr lnr-arrow-right"></span></button>
                  <!-- Subscriber button -->
                  <div style="position: absolute; left: -5000px;">
                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
