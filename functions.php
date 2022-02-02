@@ -1,10 +1,10 @@
 <?php
 
-if (!function_exists('sensive_setup')) {
-  function sensive_setup()
+if (!function_exists('sensive_travel_setup')) {
+  function sensive_travel_setup()
   {
 
-    load_theme_textdomain('sensive', get_template_directory() . '/languages');
+    load_theme_textdomain('sensive_travel', get_template_directory() . '/languages');
 
     // !добавляем пользовательский логотип
     add_theme_support('custom-logo', [
@@ -73,7 +73,7 @@ if (!function_exists('sensive_setup')) {
     add_theme_support('title-tag');
   }
 
-  add_action('after_setup_theme', 'sensive_setup');
+  add_action('after_setup_theme', 'sensive_travel_setup');
 }
 
 // ! включаем миниатюры для постов и страниц
@@ -84,9 +84,9 @@ add_image_size( 'slider', 350, 230, true );
 
 //! подключение стилей и скриптов
 
-add_action('wp_enqueue_scripts', 'sensive_scripts', 'action_function_name_7714', 99);
+add_action('wp_enqueue_scripts', 'sensive_travel_scripts', 'action_function_name_7714', 99);
 
-function sensive_scripts()
+function sensive_travel_scripts()
 {
   wp_enqueue_style('main', get_stylesheet_uri());
 
@@ -110,7 +110,7 @@ function sensive_scripts()
   wp_enqueue_style('owl-carousel', get_template_directory_uri() . '/vendors/owl-carousel/owl.carousel.min.css', array('main'), null);
 
   // подключаем основные стили
-  wp_enqueue_style('sensive', get_template_directory_uri() . '/css/style.css', array('main'), null);
+  wp_enqueue_style('sensive_travel', get_template_directory_uri() . '/css/style.css', array('main'), null);
 
   //! переподключаем jQuery 
   wp_deregister_script('jquery');
@@ -140,24 +140,24 @@ function sensive_scripts()
 
 
 // ! регистрируем несколько областей меню
-function sensive_menus()
+function sensive_travel_menus()
 {
 
   $locations = array(
 
     // собираем несколько зон (областей ) меню 
-    'header'   => __('Header Menu', 'sensive'),
-    'menu-social-header'   => __('Menu Social Header', 'sensive'),
-    'menu-social-footer'   => __('Menu Social Footer', 'sensive'),
-    // 'footer_left'   => __('Footer Left Menu', 'sensive'),
-    // 'footer_right'   => __('Footer Right Menu', 'sensive'),
+    'header'   => __('Header Menu', 'sensive_travel'),
+    'menu-social-header'   => __('Menu Social Header', 'sensive_travel'),
+    'menu-social-footer'   => __('Menu Social Footer', 'sensive_travel'),
+    // 'footer_left'   => __('Footer Left Menu', 'sensive_travel'),
+    // 'footer_right'   => __('Footer Right Menu', 'sensive_travel'),
   );
 
   // регистрируем области меню, которые лежат в переменной $locations
   register_nav_menus($locations);
 }
 // хук событие
-add_action('init', 'sensive_menus');
+add_action('init', 'sensive_travel_menus');
 
 // menu Bootstrap
 class bootstrap_4_walker_nav_menu extends Walker_Nav_menu
@@ -232,7 +232,7 @@ function my_action_callback()
     if (empty($name) or empty($email) or empty($subject) or empty($message)) {
       # Отправляем ошибку 400 (bad request).
       http_response_code(400);
-      echo __("Пожалуйста заполните все обязательные поля.", 'sensive');
+      echo __("Пожалуйста заполните все обязательные поля.", 'sensive_travel');
       exit;
     }
 
@@ -251,16 +251,16 @@ function my_action_callback()
     if ($success) {
       # Set a 200 (okay) response code.
       http_response_code(200);
-      echo __("Спасибо! Ваше сообщение отправлено.", 'sensive');
+      echo __("Спасибо! Ваше сообщение отправлено.", 'sensive_travel');
     } else {
       # Set a 500 (internal server error) response code.
       http_response_code(500);
-      echo __("Упс! Что-то пошло не так, не получилось отправить сообщение.", 'sensive');
+      echo __("Упс! Что-то пошло не так, не получилось отправить сообщение.", 'sensive_travel');
     }
   } else {
     # Not a POST request, set a 403 (forbidden) response code.
     http_response_code(403);
-    echo __("Не получилось отправить, попробуйте позже.", 'sensive');
+    echo __("Не получилось отправить, попробуйте позже.", 'sensive_travel');
   }
 
   // выход нужен для того, чтобы в ответе не было ничего лишнего, только то что возвращает функция
@@ -840,8 +840,8 @@ class Bootstrap_Walker_Comment extends Walker
   }
 
   //! создать виджеты
-  add_action('widgets_init', 'sensive_widgets_init');
-  function sensive_widgets_init()
+  add_action('widgets_init', 'sensive_travel_widgets_init');
+  function sensive_travel_widgets_init()
   {  
 
     register_sidebar(array(

@@ -12,7 +12,7 @@
        <div class="col-lg-3  col-md-6 col-sm-6">
          <div class="single-footer-widget">
 
-           <h6>Подпишитесь на наши новости</h6>
+           <h6>Подпишитесь на наши новости</h6>         
            <p>Будьте в курсе наших новостей</p>
            <div>
              <form action="https://app.getresponse.com/add_subscriber.html" accept-charset="utf-8" method="post">
